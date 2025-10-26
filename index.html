@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cricket Clash: Ultimate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🏏 Cricket Clash: Ultimate</h1>
+
+  <div id="player-selection">
+    <h2>Select Your Team (11 Players)</h2>
+    <ul id="player-list"></ul>
+    <button id="start-match" disabled>Start Match</button>
+  </div>
+
+  <div id="gameplay" style="display:none;">
+    <h2>Live Match</h2>
+    <p id="live-score">Score: 0/0</p>
+    <p id="over-info">Over: 0.0</p>
+    <button id="play-ball">Play Ball</button>
+    <p id="ball-result"></p>
+    <p id="commentary"></p>
+  </div>
+
+  <div id="match-end" style="display:none;">
+    <h2>🏁 Match Over</h2>
+    <p id="final-score"></p>
+    <p id="result-message"></p>
+  </div>
+
+  <audio id="cheer-sound" src="https://www.soundjay.com/human/cheering-01.mp3"></audio>
+  <audio id="wicket-sound" src="https://www.soundjay.com/button/button-3.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
