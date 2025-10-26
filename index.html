@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cricket Clash: Dream Team</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🏏 Cricket Clash: Dream Team</h1>
+  <div id="player-selection">
+    <h2>Select Your Team (11 Players)</h2>
+    <ul id="player-list"></ul>
+    <button id="start-match" disabled>Start Match</button>
+  </div>
+  <div id="match-result" style="display:none;">
+    <h2>Match Result</h2>
+    <p id="score"></p>
+    <p id="winner"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f8ff;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #2e8b57;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  width: 200px;
+  margin: 10px auto;
+}
+
+li.selected {
+  background: #90ee90;
+  font-weight: bold;
+}const players = [
+  "Virat Blaze", "Mahi Storm", "Rohit Thunder", "Kane Ice", "Steve Fire",
+  "Babar Swift", "Rashid Spin", "Bumrah Bolt", "Starc Blaze", "Shakib Shield", "Bravo Beat"
+];
+
+const playerList = document.getElementById("player-list");
+const startButton = document.getElementById("start-match");
+const scoreDisplay = document.getElementById("score");
+const winnerDisplay = document.getElementById("winner");
+const matchResult = document.getElementById("match-result");
+
+let selectedPlayers = [];
+
+players.forEach(player => {
+  const li = document.createElement("li");
+  li.textContent = player;
+  li.addEventListener("click", () => {
+    if (selectedPlayers.includes(player)) {
+      selectedPlayers = selectedPlayers.filter(p => p !== player);
+      li.classList.remove("selected");
+    } else if (selectedPlayers.length < 11) {
+      selectedPlayers.push(player);
+      li.classList.add("selected");
+    }
+    startButton.disabled = selectedPlayers.length !== 11;
+  });
+  playerList.appendChild(li);
+});
+
+startButton.addEventListener("click", () => {
+  const score = Math.floor(Math.random() * 101) + 50;
+  const opponentScore = Math.floor(Math.random() * 101) + 50;
+  scoreDisplay.textContent = `Your Team: ${score} runs | Opponent: ${opponentScore} runs`;
+  winnerDisplay.textContent = score > opponentScore ? "🏆 You Win!" : score < opponentScore ? "😢 You Lose!" : "🤝 It's a Tie!";
+  matchResult.style.display = "block";
+});
